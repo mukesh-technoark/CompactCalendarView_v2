@@ -857,10 +857,10 @@ class CompactCalendarController {
         // k = size() - 1, but since we don't want to draw more than 2 indicators, we just stop after 2 iterations so we can just hard k = -2 instead
         // we can use the below loop to draw arbitrary eventsByMonthAndYearMap based on the current screen size, for example, larger screens should be able to
         // display more than 2 evens before displaying plus indicator, but don't draw more than 3 indicators for now
-        for (int j = 0, k = -2; j < 3; j++, k += 2) {
+        for (int j = 0, k = -3; j < 4; j++, k += 3) {
             Event event = eventsList.get(j);
             float xStartPosition = xPosition + (xIndicatorOffset * k);
-            if (j == 2) {
+            if (j == 3 ) {
                 dayPaint.setColor(multiEventIndicatorColor);
                 dayPaint.setStrokeWidth(multiDayIndicatorStrokeWidth);
                 canvas.drawLine(xStartPosition - smallIndicatorRadius, yPosition, xStartPosition + smallIndicatorRadius, yPosition, dayPaint);
