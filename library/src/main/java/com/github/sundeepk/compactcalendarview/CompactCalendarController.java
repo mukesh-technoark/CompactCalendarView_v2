@@ -816,8 +816,10 @@ class CompactCalendarController {
                             yPosition += indicatorOffset;
                         }
 
-                        if (eventsList.size() >= 3) {
+                        if (eventsList.size() > 3) {
                             drawEventsWithPlus(canvas, xPosition, yPosition, eventsList);
+                        } else if (eventsList.size() == 3) {
+                            drawThreeEvents(canvas, xPosition, yPosition, eventsList);
                         } else if (eventsList.size() == 2) {
                             drawTwoEvents(canvas, xPosition, yPosition, eventsList);
                         } else if (eventsList.size() == 1) {
@@ -827,6 +829,15 @@ class CompactCalendarController {
                 }
             }
         }
+    }
+
+    private void drawThreeEvents(Canvas canvas, float xPosition, float yPosition, List<Event> eventsList) {
+        //draw first event just left of center
+        drawEventIndicatorCircle(canvas, xPosition + (xIndicatorOffset * -2), yPosition, eventsList.get(0).getColor());
+        //draw second event centered
+        drawEventIndicatorCircle(canvas, xPosition, yPosition, eventsList.get(1).getColor());
+        //draw third event just right of center
+        drawEventIndicatorCircle(canvas, xPosition + (xIndicatorOffset * 2), yPosition, eventsList.get(2).getColor());
     }
 
     private void drawSingleEvent(Canvas canvas, float xPosition, float yPosition, List<Event> eventsList) {
